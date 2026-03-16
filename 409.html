@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Arena de Dados - Cadastro Sequencial</title>
+    <style>
+        * { box-sizing: border-box; }
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background: #eef2f7; color: #2d3436; 
+            margin: 0; padding: 10px; 
+            height: 100vh; display: flex; flex-direction: column; overflow: hidden;
+        }
+
+        h1 { color: #0984e3; margin: 5px 0; font-size: 20px; }
+        .instrucoes { background: #dfe6e9; padding: 10px; border-radius: 8px; font-size: 13px; margin-bottom: 10px; border-left: 5px solid #0984e3; }
+
+        /* Área de Input Centralizada */
+        .input-area {
+            background: white; padding: 15px; border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            max-width: 500px; margin: 0 auto 15px auto;
+            display: flex; gap: 10px; align-items: flex-end;
+        }
+        .campo { flex: 1; text-align: left; }
+        .campo label { font-size: 11px; font-weight: bold; color: #636e72; display: block; }
+        input, select { width: 100%; padding: 8px; border-radius: 5px; border: 1px solid #bdc3c7; margin-top: 3px; }
+
+        button.btn-add { background: #00b894; color: white; border: none; padding: 10px 20px; border-radius: 8px; font-weight: bold; cursor: pointer; height: 38px; }
+        button.btn-final { background: #e94560; color: white; border: none; padding: 10px 25px; border-radius: 8px; font-weight: bold; cursor: pointer; margin-top: 5px; }
+        button:hover { opacity: 0.8; }
+
+        /* Lista de Cadastrados */
+        .lista-container {
+            flex-grow: 1; background: #ffffff; border: 2px solid #dfe6e9;
+            border-radius: 12px; margin: 0 20px; overflow-y: auto;
+        }
+        table { width: 100%; border-collapse: collapse; font-size: 14px; }
+        th { background: #f1f2f6; padding: 10px; border-bottom: 2px solid #dfe6e9; text-align: left; }
+        td { padding: 10px; border-bottom: 1px solid #f1f2f6; text-align: left; }
+
+        /* Modal */
+        #modal {
+            display: none; position: fixed; z-index: 100; left: 0; top: 0;
+            width: 100%; height: 100%; background: rgba(0,0,0,0.7);
+            align-items: center; justify-content: center;
+        }
+        .modal-content {
+            background: white; padding: 25px; border-radius: 20px; width: 400px;
+            text-align: center; animation: crescer 0.3s ease-out;
+        }
+        @keyframes crescer { from { transform: scale(0.7); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+
+        footer { font-size: 10px; color: #636e72; margin-top: 10px; border-top: 1px solid #bdc3c7; padding-top: 5px; }
+    </style>
+</head>
+<body>
+
+    <h1>🛡️ Arena de Dados: Sistema de Registro</h1>
+    
+    <div class="instrucoes">
+        <strong>Como proceder:</strong> Digite o nome, o poder (0-100) e o elemento do seu personagem. 
+        Clique em <strong>"Adicionar"</strong> para registrar. Você deve cadastrar pelo menos 3 personagens para finalizar.
+    </div>
+
+    <div class="input-area">
+        <div class="campo">
+            <label>NOME</label>
+            <input type="text" id="inNome" placeholder="Ex: Titã">
+        </div>
+        <div class="campo">
+            <label>PODER (0-100)</label>
+            <input type="number" id="inPoder" placeholder="0">
+        </div>
+        <div class="campo">
+            <label>ELEMENTO</label>
+            <select id="inElemento">
+                <option value="">...</option>
+                <option value="Fogo">🔥 Fogo</option>
+                <option value="Água">💧 Água</option>
+                <option value="Terra">🍃 Terra</option>
+            </select>
+        </div>
+        <button class="btn-add" onclick="adicionarRegistro()">ADICIONAR</button>
+    </div>
+
+    <div class="lista-container">
+        <table id="tabelaRegistros">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>NOME</th>
+                    <th>PODER</th>
+                    <th>ELEMENTO</th>
+                    <th>STATUS</th>
+                </tr>
+            </thead>
+            <tbody id="corpoTabela">
+                </tbody>
+        </table>
+    </div>
+
+    <div style="text-align: center; padding: 10px;">
+        <button class="btn-final" onclick="finalizarMissao()">ENCERRAR E VER NOTA</button>
+    </div>
+
+    <div id="modal">
+        <div class="modal-content">
+            <h2 id="modal-titulo">Relatório Final</h2>
+            <div style="font-size: 50px; font-weight: bold; color: #00b894;" id="vNota">10.0</div>
+            <p id="feedbackText" style="font-size: 14px; color: #636e72;"></p>
+            <button onclick="location.reload()" style="padding: 10px 20px; cursor: pointer; border-radius: 5px; border: none; background: #0984e3; color: white;">Reiniciar</button>
+        </div>
+    </div>
+
+    <footer> 
+        <p><strong>Material Pedagógico - Profª Adriana Bett Terebinto © 2026</strong></p> 
+        <p>São Lourenço do Oeste - SC</p> 
+    </footer>
+
+    <script>
+        let registros = [];
+        let notaBase = 10.0;
+        let errosCometidos = 0;
+
+        function adicionarRegistro() {
+            const nome = document.getElementById('inNome').value.trim();
+            const poder = document.getElementById('inPoder').value;
+            const elemento = document.getElementById('inElemento').value;
+            
+            let erroNeste = false;
+            let msgStatus = "✅ OK";
+
+            // Validação em Tempo Real (Avaliação do Aluno)
+            if (!nome || poder === "" || !elemento) {
+                alert("Por favor, preencha todos os campos do registro!");
+                return;
+            }
+
+            if (poder < 0 || poder > 100) {
+                errosCometidos++;
+                erroNeste = true;
+                msgStatus = "❌ Valor Inválido";
+            }
+
+            // Adiciona ao Array
+            const novoItem = {
+                id: registros.length + 1,
+                nome: nome,
+                poder: poder,
+                elemento: elemento,
+                status: msgStatus
+            };
+            
+            registros.push(novoItem);
+            atualizarTabela();
+            
+            // Limpa campos para o próximo
+            document.getElementById('inNome').value = "";
+            document.getElementById('inPoder').value = "";
+            document.getElementById('inElemento').value = "";
+            document.getElementById('inNome').focus();
+        }
+
+        function atualizarTabela() {
+            const tbody = document.getElementById('corpoTabela');
+            tbody.innerHTML = "";
+            
+            registros.forEach(r => {
+                const row = `<tr>
+                    <td>${r.id}</td>
+                    <td>${r.nome}</td>
+                    <td>${r.poder}</td>
+                    <td>${r.elemento}</td>
+                    <td style="color: ${r.status.includes('❌') ? '#d63031' : '#00b894'}"><b>${r.status}</b></td>
+                </tr>`;
+                tbody.innerHTML += row;
+            });
+            // Auto-scroll para o último item
+            const container = document.querySelector('.lista-container');
+            container.scrollTop = container.scrollHeight;
+        }
+
+        function finalizarMissao() {
+            if (registros.length < 3) {
+                alert("Adicione pelo menos 3 registros para completar a missão!");
+                return;
+            }
+
+            // Cálculo da nota final
+            // Cada erro subtrai 2 pontos. Se cadastrar menos de 3, também perde.
+            let notaFinal = notaBase - (errosCometidos * 2);
+            
+            // Verifica duplicidade de nomes
+            const nomesUnicos = new Set(registros.map(r => r.nome.toLowerCase()));
+            if (nomesUnicos.size < registros.length) {
+                notaFinal -= 1;
+            }
+
+            notaFinal = Math.max(0, notaFinal);
+
+            document.getElementById('vNota').innerText = notaFinal.toFixed(1);
+            document.getElementById('modal-titulo').innerText = notaFinal >= 7 ? "Missão Cumprida!" : "Precisa Revisar!";
+            document.getElementById('feedbackText').innerText = `Você realizou ${registros.length} registros. Erros de dados detectados: ${errosCometidos}.`;
+            document.getElementById('modal').style.display = 'flex';
+        }
+    </script>
+</body>
+</html>
