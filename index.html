@@ -1,209 +1,543 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <title>Arena de Dados - Cadastro Sequencial</title>
-    <style>
-        * { box-sizing: border-box; }
-        body { 
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-            background: #eef2f7; color: #2d3436; 
-            margin: 0; padding: 10px; 
-            height: 100vh; display: flex; flex-direction: column; overflow: hidden;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Semana 1 – O que é um Registro?</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fredoka+One&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --verde: #1E6B3C;
+    --verde-claro: #27AE60;
+    --verde-bg: #E8F8EF;
+    --amarelo: #F4D03F;
+    --laranja: #E67E22;
+    --azul: #2980B9;
+    --roxo: #8E44AD;
+    --vermelho: #E74C3C;
+    --cinza: #F0F4F8;
+    --texto: #1a1a2e;
+    --branco: #ffffff;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: #f0faf4;
+    min-height: 100vh;
+    padding: 20px;
+    background-image: radial-gradient(circle at 10% 20%, rgba(39,174,96,0.08) 0%, transparent 50%),
+                      radial-gradient(circle at 90% 80%, rgba(30,107,60,0.08) 0%, transparent 50%);
+  }
 
-        h1 { color: #0984e3; margin: 5px 0; font-size: 20px; }
-        .instrucoes { background: #dfe6e9; padding: 10px; border-radius: 8px; font-size: 13px; margin-bottom: 10px; border-left: 5px solid #0984e3; }
+  .topo {
+    text-align: center;
+    margin-bottom: 28px;
+  }
+  .badge {
+    display: inline-block;
+    background: var(--verde);
+    color: white;
+    font-family: 'Fredoka One', cursive;
+    font-size: 13px;
+    letter-spacing: 1px;
+    padding: 5px 18px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+  }
+  .topo h1 {
+    font-family: 'Fredoka One', cursive;
+    font-size: clamp(26px, 5vw, 40px);
+    color: var(--verde);
+    line-height: 1.1;
+  }
+  .topo p {
+    color: #555;
+    font-size: 15px;
+    margin-top: 6px;
+  }
 
-        /* Área de Input Centralizada */
-        .input-area {
-            background: white; padding: 15px; border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            max-width: 500px; margin: 0 auto 15px auto;
-            display: flex; gap: 10px; align-items: flex-end;
-        }
-        .campo { flex: 1; text-align: left; }
-        .campo label { font-size: 11px; font-weight: bold; color: #636e72; display: block; }
-        input, select { width: 100%; padding: 8px; border-radius: 5px; border: 1px solid #bdc3c7; margin-top: 3px; }
+  .card {
+    background: white;
+    border-radius: 20px;
+    padding: 24px;
+    margin-bottom: 22px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+    border-left: 6px solid var(--verde);
+  }
+  .card h2 {
+    font-family: 'Fredoka One', cursive;
+    font-size: 20px;
+    color: var(--verde);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .card p { font-size: 15px; color: #444; line-height: 1.7; margin-bottom: 10px; }
 
-        button.btn-add { background: #00b894; color: white; border: none; padding: 10px 20px; border-radius: 8px; font-weight: bold; cursor: pointer; height: 38px; }
-        button.btn-final { background: #e94560; color: white; border: none; padding: 10px 25px; border-radius: 8px; font-weight: bold; cursor: pointer; margin-top: 5px; }
-        button:hover { opacity: 0.8; }
+  /* ── Ficha Interativa ── */
+  .ficha-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  @media(max-width: 600px){ .ficha-container { grid-template-columns: 1fr; } }
 
-        /* Lista de Cadastrados */
-        .lista-container {
-            flex-grow: 1; background: #ffffff; border: 2px solid #dfe6e9;
-            border-radius: 12px; margin: 0 20px; overflow-y: auto;
-        }
-        table { width: 100%; border-collapse: collapse; font-size: 14px; }
-        th { background: #f1f2f6; padding: 10px; border-bottom: 2px solid #dfe6e9; text-align: left; }
-        td { padding: 10px; border-bottom: 1px solid #f1f2f6; text-align: left; }
+  .ficha-card {
+    background: linear-gradient(135deg, #fff 0%, #f0faf4 100%);
+    border: 2px solid #c8e6c9;
+    border-radius: 16px;
+    padding: 20px;
+    position: relative;
+  }
+  .ficha-card h3 {
+    font-family: 'Fredoka One', cursive;
+    color: var(--verde);
+    font-size: 16px;
+    margin-bottom: 14px;
+    text-align: center;
+    background: var(--verde);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 10px;
+  }
 
-        /* Modal */
-        #modal {
-            display: none; position: fixed; z-index: 100; left: 0; top: 0;
-            width: 100%; height: 100%; background: rgba(0,0,0,0.7);
-            align-items: center; justify-content: center;
-        }
-        .modal-content {
-            background: white; padding: 25px; border-radius: 20px; width: 400px;
-            text-align: center; animation: crescer 0.3s ease-out;
-        }
-        @keyframes crescer { from { transform: scale(0.7); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+  .campo-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+  .campo-nome {
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--verde);
+    min-width: 90px;
+    white-space: nowrap;
+  }
+  .campo-input {
+    flex: 1;
+    border: 2px solid #c8e6c9;
+    border-radius: 10px;
+    padding: 6px 12px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 14px;
+    color: var(--texto);
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    background: white;
+  }
+  .campo-input:focus {
+    border-color: var(--verde-claro);
+    box-shadow: 0 0 0 3px rgba(39,174,96,0.15);
+  }
 
-        footer { font-size: 10px; color: #636e72; margin-top: 10px; border-top: 1px solid #bdc3c7; padding-top: 5px; }
-    </style>
+  /* ── Personagem ── */
+  .personagem-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  @media(max-width: 600px){ .personagem-grid { grid-template-columns: 1fr; } }
+
+  .campo-personagem {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .campo-personagem label {
+    font-size: 12px;
+    font-weight: 800;
+    color: var(--roxo);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .campo-personagem input, .campo-personagem select {
+    border: 2px solid #d7b8f0;
+    border-radius: 10px;
+    padding: 7px 12px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s;
+    background: white;
+  }
+  .campo-personagem input:focus, .campo-personagem select:focus {
+    border-color: var(--roxo);
+    box-shadow: 0 0 0 3px rgba(142,68,173,0.12);
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 11px 24px;
+    border-radius: 50px;
+    font-family: 'Fredoka One', cursive;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    transition: transform 0.15s, box-shadow 0.15s;
+    margin-top: 14px;
+  }
+  .btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.15); }
+  .btn:active { transform: translateY(0); }
+  .btn-verde { background: var(--verde); color: white; }
+  .btn-roxo  { background: var(--roxo);  color: white; }
+  .btn-laranja { background: var(--laranja); color: white; }
+
+  /* ── Preview Ficha ── */
+  .preview-box {
+    background: linear-gradient(135deg, #fff9e6, #fff3cd);
+    border: 2px dashed var(--amarelo);
+    border-radius: 16px;
+    padding: 20px;
+    margin-top: 14px;
+    display: none;
+  }
+  .preview-box.show { display: block; animation: popIn 0.4s ease; }
+  .preview-box h4 {
+    font-family: 'Fredoka One', cursive;
+    color: #b7791f;
+    margin-bottom: 12px;
+    font-size: 16px;
+  }
+  .preview-campo {
+    display: flex;
+    gap: 8px;
+    font-size: 14px;
+    margin-bottom: 6px;
+    align-items: flex-start;
+  }
+  .preview-label { font-weight: 800; color: var(--verde); min-width: 110px; }
+  .preview-valor { color: #333; }
+
+  /* ── Reflexão ── */
+  .reflexao-box {
+    background: linear-gradient(135deg, #e8f4fd, #dbeafe);
+    border-left: 5px solid var(--azul);
+    border-radius: 0 16px 16px 0;
+    padding: 18px 20px;
+    margin-top: 16px;
+  }
+  .reflexao-box p { color: #1e40af; font-size: 15px; font-weight: 700; margin-bottom: 10px; }
+  .reflexao-opcoes { display: flex; flex-direction: column; gap: 8px; }
+  .reflexao-op {
+    background: white;
+    border: 2px solid #93c5fd;
+    border-radius: 12px;
+    padding: 10px 16px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #1e40af;
+    font-weight: 600;
+    transition: all 0.2s;
+    text-align: left;
+  }
+  .reflexao-op:hover { background: #dbeafe; border-color: var(--azul); }
+  .reflexao-op.certa { background: #d1fae5; border-color: #10b981; color: #065f46; }
+  .reflexao-op.errada { background: #fee2e2; border-color: #ef4444; color: #991b1b; }
+
+  .feedback-msg {
+    font-size: 14px;
+    font-weight: 700;
+    padding: 10px 16px;
+    border-radius: 12px;
+    margin-top: 10px;
+    display: none;
+  }
+  .feedback-msg.ok { background: #d1fae5; color: #065f46; display: block; }
+  .feedback-msg.nao { background: #fee2e2; color: #991b1b; display: block; }
+
+  /* ── Progresso ── */
+  .progresso-bar-wrap {
+    background: #e2e8f0;
+    border-radius: 10px;
+    height: 12px;
+    margin: 14px 0 4px;
+    overflow: hidden;
+  }
+  .progresso-bar {
+    background: linear-gradient(90deg, var(--verde-claro), var(--verde));
+    height: 100%;
+    width: 0%;
+    border-radius: 10px;
+    transition: width 0.5s ease;
+  }
+  .progresso-txt { font-size: 12px; color: #888; text-align: right; }
+
+  /* ── Animações ── */
+  @keyframes popIn {
+    from { opacity: 0; transform: scale(0.93) translateY(8px); }
+    to   { opacity: 1; transform: scale(1) translateY(0); }
+  }
+  @keyframes shake {
+    0%,100%{ transform: translateX(0); }
+    20%    { transform: translateX(-6px); }
+    40%    { transform: translateX(6px); }
+    60%    { transform: translateX(-4px); }
+    80%    { transform: translateX(4px); }
+  }
+  .shake { animation: shake 0.4s ease; }
+
+  .estrelas { font-size: 22px; cursor: pointer; user-select: none; }
+  .estrela { transition: transform 0.1s; display: inline-block; }
+  .estrela:hover { transform: scale(1.3); }
+
+  .tag-campo {
+    display: inline-block;
+    background: var(--verde-bg);
+    color: var(--verde);
+    font-size: 12px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin: 3px;
+    border: 1.5px solid #a7d7b4;
+  }
+
+  .secao-titulo {
+    font-family: 'Fredoka One', cursive;
+    font-size: 18px;
+    color: white;
+    background: var(--verde);
+    padding: 10px 18px;
+    border-radius: 12px;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  footer {
+    text-align: center;
+    color: #aaa;
+    font-size: 12px;
+    margin-top: 30px;
+    padding-bottom: 10px;
+  }
+</style>
 </head>
 <body>
 
-    <h1>🛡️ Arena de Dados: Sistema de Registro</h1>
-    
-    <div class="instrucoes">
-        <strong>Como proceder:</strong> Digite o nome, o poder (0-100) e o elemento do seu personagem. 
-        Clique em <strong>"Adicionar"</strong> para registrar. Você deve cadastrar pelo menos 3 personagens para finalizar.
+<div class="topo">
+  <div class="badge">EF04CO02 · SEMANA 1</div>
+  <h1>📋 O que é um Registro?</h1>
+</div>
+
+<!-- ─────────────────── PARTE 1: Minha Ficha ─────────────────── -->
+<div class="card">
+  <h2>🧑 Parte 1 – Crie sua Ficha de Registro</h2>
+  <p>Um <strong>registro</strong> guarda informações sobre algo ou alguém. Cada informação vai em um <strong>campo com nome</strong>. Preencha seus campos abaixo!</p>
+
+  <div class="ficha-container">
+    <!-- Ficha Pessoal -->
+    <div class="ficha-card">
+      <h3>👤 Minha Ficha Pessoal</h3>
+      <div class="campo-row"><span class="campo-nome">Nome</span><input class="campo-input" id="f_nome" placeholder="Seu nome completo" oninput="atualizarProgresso()"></div>
+      <div class="campo-row"><span class="campo-nome">Apelido</span><input class="campo-input" id="f_apelido" placeholder="Como te chamam?" oninput="atualizarProgresso()"></div>
+      <div class="campo-row"><span class="campo-nome">Idade</span><input class="campo-input" id="f_idade" type="number" min="1" max="20" placeholder="Ex: 9" oninput="atualizarProgresso()"></div>
+      <div class="campo-row"><span class="campo-nome">Cor favorita</span><input class="campo-input" id="f_cor" placeholder="Ex: azul" oninput="atualizarProgresso()"></div>
+      <div class="campo-row"><span class="campo-nome">Comida fav.</span><input class="campo-input" id="f_comida" placeholder="Ex: pizza" oninput="atualizarProgresso()"></div>
+      <div class="campo-row"><span class="campo-nome">Hobby</span><input class="campo-input" id="f_hobby" placeholder="Ex: jogar bola" oninput="atualizarProgresso()"></div>
+      <div class="campo-row"><span class="campo-nome">Animal fav.</span><input class="campo-input" id="f_animal" placeholder="Ex: cachorro" oninput="atualizarProgresso()"></div>
+
+      <div class="progresso-bar-wrap">
+        <div class="progresso-bar" id="progresso"></div>
+      </div>
+      <div class="progresso-txt" id="progresso-txt">0 de 7 campos preenchidos</div>
+
+      <button class="btn btn-verde" onclick="gerarFicha()">👁️ Ver minha ficha!</button>
     </div>
 
-    <div class="input-area">
-        <div class="campo">
-            <label>NOME</label>
-            <input type="text" id="inNome" placeholder="Ex: Titã">
+    <!-- Preview -->
+    <div style="display:flex; flex-direction:column; justify-content:center;">
+      <div class="preview-box" id="preview">
+        <h4>📄 Sua Ficha de Registro</h4>
+        <div id="preview-conteudo"></div>
+        <div style="margin-top:14px; font-size:12px; color:#888;">
+          Cada linha é um <strong>campo</strong> com nome e valor. É isso que chamamos de <strong>registro</strong>!
         </div>
-        <div class="campo">
-            <label>PODER (0-100)</label>
-            <input type="number" id="inPoder" placeholder="0">
-        </div>
-        <div class="campo">
-            <label>ELEMENTO</label>
-            <select id="inElemento">
-                <option value="">...</option>
-                <option value="Fogo">🔥 Fogo</option>
-                <option value="Água">💧 Água</option>
-                <option value="Terra">🍃 Terra</option>
-            </select>
-        </div>
-        <button class="btn-add" onclick="adicionarRegistro()">ADICIONAR</button>
+      </div>
+      <div id="msg-vazia" style="text-align:center; color:#aaa; font-size:14px; padding:30px;">
+        <div style="font-size:50px; margin-bottom:10px;">👆</div>
+        Preencha os campos ao lado<br>e clique em "Ver minha ficha"!
+      </div>
     </div>
+  </div>
+</div>
 
-    <div class="lista-container">
-        <table id="tabelaRegistros">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>NOME</th>
-                    <th>PODER</th>
-                    <th>ELEMENTO</th>
-                    <th>STATUS</th>
-                </tr>
-            </thead>
-            <tbody id="corpoTabela">
-                </tbody>
-        </table>
+<!-- ─────────────────── PARTE 2: Personagem ─────────────────── -->
+<div class="card" style="border-left-color: var(--roxo);">
+  <h2>🦸 Parte 2 – Ficha do Seu Personagem Inventado</h2>
+  <p>Agora crie um <strong>super-herói ou personagem imaginário</strong> seu! Preencha os campos e veja o registro aparecer.</p>
+
+  <div class="personagem-grid">
+    <div class="campo-personagem">
+      <label>⚡ Nome do Personagem</label>
+      <input id="p_nome" placeholder="Ex: Mega Trovão">
     </div>
-
-    <div style="text-align: center; padding: 10px;">
-        <button class="btn-final" onclick="finalizarMissao()">ENCERRAR E VER NOTA</button>
+    <div class="campo-personagem">
+      <label>🎭 Tipo</label>
+      <select id="p_tipo">
+        <option value="">Escolha...</option>
+        <option>Herói</option>
+        <option>Vilão</option>
+        <option>Sidekick</option>
+        <option>Mago</option>
+        <option>Robô</option>
+        <option>Animal especial</option>
+      </select>
     </div>
-
-    <div id="modal">
-        <div class="modal-content">
-            <h2 id="modal-titulo">Relatório Final</h2>
-            <div style="font-size: 50px; font-weight: bold; color: #00b894;" id="vNota">10.0</div>
-            <p id="feedbackText" style="font-size: 14px; color: #636e72;"></p>
-            <button onclick="location.reload()" style="padding: 10px 20px; cursor: pointer; border-radius: 5px; border: none; background: #0984e3; color: white;">Reiniciar</button>
-        </div>
+    <div class="campo-personagem">
+      <label>💪 Superpoder</label>
+      <input id="p_poder" placeholder="Ex: controla o raio">
     </div>
+    <div class="campo-personagem">
+      <label>😰 Fraqueza</label>
+      <input id="p_fraqueza" placeholder="Ex: tem medo de água">
+    </div>
+    <div class="campo-personagem">
+      <label>🦺 Cor da Fantasia</label>
+      <input id="p_fantasia" placeholder="Ex: dourado e azul">
+    </div>
+    <div class="campo-personagem">
+      <label>🌟 Nível de Poder</label>
+      <select id="p_nivel">
+        <option value="">Escolha...</option>
+        <option>⭐ Iniciante</option>
+        <option>⭐⭐ Médio</option>
+        <option>⭐⭐⭐ Poderoso</option>
+        <option>⭐⭐⭐⭐ Épico</option>
+        <option>⭐⭐⭐⭐⭐ Lendário</option>
+      </select>
+    </div>
+  </div>
 
-    <footer> 
-        <p><strong>Material Pedagógico - Profª Adriana Bett Terebinto © 2026</strong></p> 
-        <p>São Lourenço do Oeste - SC</p> 
-    </footer>
+  <button class="btn btn-roxo" onclick="gerarPersonagem()">🦸 Gerar Ficha do Personagem!</button>
 
-    <script>
-        let registros = [];
-        let notaBase = 10.0;
-        let errosCometidos = 0;
+  <div class="preview-box" id="preview-personagem" style="background: linear-gradient(135deg,#f5e6ff,#ede0ff); border-color: #c084fc;">
+    <h4 style="color:#6b21a8;">🦸 Ficha do Personagem</h4>
+    <div id="preview-personagem-conteudo"></div>
+  </div>
+</div>
 
-        function adicionarRegistro() {
-            const nome = document.getElementById('inNome').value.trim();
-            const poder = document.getElementById('inPoder').value;
-            const elemento = document.getElementById('inElemento').value;
-            
-            let erroNeste = false;
-            let msgStatus = "✅ OK";
+<!-- ─────────────────── PARTE 3: Reflexão ─────────────────── -->
+<div class="card" style="border-left-color: var(--azul);">
+  <h2>🤔 Parte 3 – Hora de Pensar!</h2>
+  <p>Responda as questões abaixo para fixar o que aprendemos.</p>
 
-            // Validação em Tempo Real (Avaliação do Aluno)
-            if (!nome || poder === "" || !elemento) {
-                alert("Por favor, preencha todos os campos do registro!");
-                return;
-            }
+  <!-- Q1 -->
+  <div class="reflexao-box" style="margin-bottom:16px;">
+    <p>🟦 Questão 1: O que é um <strong>campo</strong> em um registro?</p>
+    <div class="reflexao-opcoes">
+      <button class="reflexao-op" onclick="responder(this, false, 'q1')">A) É o valor guardado, como "João".</button>
+      <button class="reflexao-op" onclick="responder(this, true, 'q1')">B) É o nome que identifica uma informação, como "Nome" ou "Idade".</button>
+      <button class="reflexao-op" onclick="responder(this, false, 'q1')">C) É o número da linha na tabela.</button>
+    </div>
+    <div class="feedback-msg" id="fb-q1"></div>
+  </div>
 
-            if (poder < 0 || poder > 100) {
-                errosCometidos++;
-                erroNeste = true;
-                msgStatus = "❌ Valor Inválido";
-            }
+  <!-- Q2 -->
+  <div class="reflexao-box" style="margin-bottom:16px;">
+    <p>🟦 Questão 2: Por que chamamos esse tipo de organização de <strong>"registro nomeado"</strong>?</p>
+    <div class="reflexao-opcoes">
+      <button class="reflexao-op" onclick="responder(this, false, 'q2')">A) Porque cada dado tem um número de posição.</button>
+      <button class="reflexao-op" onclick="responder(this, false, 'q2')">B) Porque o arquivo precisa ter um nome no computador.</button>
+      <button class="reflexao-op" onclick="responder(this, true, 'q2')">C) Porque cada campo tem um <em>nome</em> que identifica o que guarda.</button>
+    </div>
+    <div class="feedback-msg" id="fb-q2"></div>
+  </div>
 
-            // Adiciona ao Array
-            const novoItem = {
-                id: registros.length + 1,
-                nome: nome,
-                poder: poder,
-                elemento: elemento,
-                status: msgStatus
-            };
-            
-            registros.push(novoItem);
-            atualizarTabela();
-            
-            // Limpa campos para o próximo
-            document.getElementById('inNome').value = "";
-            document.getElementById('inPoder').value = "";
-            document.getElementById('inElemento').value = "";
-            document.getElementById('inNome').focus();
-        }
+  <!-- Q3 -->
+  <div class="reflexao-box">
+    <p>🟦 Questão 3: Se o campo "Nome" fosse só a <strong>posição 1</strong> (sem nome), o que aconteceria?</p>
+    <div class="reflexao-opcoes">
+      <button class="reflexao-op" onclick="responder(this, false, 'q3')">A) Ficaria mais fácil porque números são simples.</button>
+      <button class="reflexao-op" onclick="responder(this, true, 'q3')">B) Ficaria mais difícil — precisaríamos lembrar o que cada posição significa.</button>
+      <button class="reflexao-op" onclick="responder(this, false, 'q3')">C) Não faria diferença nenhuma.</button>
+    </div>
+    <div class="feedback-msg" id="fb-q3"></div>
+  </div>
+</div>
 
-        function atualizarTabela() {
-            const tbody = document.getElementById('corpoTabela');
-            tbody.innerHTML = "";
-            
-            registros.forEach(r => {
-                const row = `<tr>
-                    <td>${r.id}</td>
-                    <td>${r.nome}</td>
-                    <td>${r.poder}</td>
-                    <td>${r.elemento}</td>
-                    <td style="color: ${r.status.includes('❌') ? '#d63031' : '#00b894'}"><b>${r.status}</b></td>
-                </tr>`;
-                tbody.innerHTML += row;
-            });
-            // Auto-scroll para o último item
-            const container = document.querySelector('.lista-container');
-            container.scrollTop = container.scrollHeight;
-        }
+<footer>Material Pedagógico - Profª Adriana Bett Terebinto © 2026</footer>
 
-        function finalizarMissao() {
-            if (registros.length < 3) {
-                alert("Adicione pelo menos 3 registros para completar a missão!");
-                return;
-            }
+<script>
+const campos = ['f_nome','f_apelido','f_idade','f_cor','f_comida','f_hobby','f_animal'];
+const labels = ['Nome','Apelido','Idade','Cor favorita','Comida favorita','Hobby','Animal favorito'];
+const emojis = ['👤','🏷️','🎂','🎨','🍕','⚽','🐾'];
 
-            // Cálculo da nota final
-            // Cada erro subtrai 2 pontos. Se cadastrar menos de 3, também perde.
-            let notaFinal = notaBase - (errosCometidos * 2);
-            
-            // Verifica duplicidade de nomes
-            const nomesUnicos = new Set(registros.map(r => r.nome.toLowerCase()));
-            if (nomesUnicos.size < registros.length) {
-                notaFinal -= 1;
-            }
+function atualizarProgresso() {
+  const preenchidos = campos.filter(id => document.getElementById(id).value.trim() !== '').length;
+  const pct = (preenchidos / campos.length) * 100;
+  document.getElementById('progresso').style.width = pct + '%';
+  document.getElementById('progresso-txt').textContent = `${preenchidos} de ${campos.length} campos preenchidos`;
+}
 
-            notaFinal = Math.max(0, notaFinal);
+function gerarFicha() {
+  const valores = campos.map(id => document.getElementById(id).value.trim());
+  const preenchidos = valores.filter(v => v !== '').length;
+  if (preenchidos < 3) {
+    document.querySelector('.ficha-card').classList.add('shake');
+    setTimeout(() => document.querySelector('.ficha-card').classList.remove('shake'), 400);
+    alert('Preencha pelo menos 3 campos primeiro! 😊');
+    return;
+  }
+  let html = '';
+  campos.forEach((id, i) => {
+    const val = valores[i] || '—';
+    html += `<div class="preview-campo">
+      <span class="preview-label">${emojis[i]} ${labels[i]}</span>
+      <span class="preview-valor">${val}</span>
+    </div>`;
+  });
+  document.getElementById('preview-conteudo').innerHTML = html;
+  document.getElementById('preview').classList.add('show');
+  document.getElementById('msg-vazia').style.display = 'none';
+}
 
-            document.getElementById('vNota').innerText = notaFinal.toFixed(1);
-            document.getElementById('modal-titulo').innerText = notaFinal >= 7 ? "Missão Cumprida!" : "Precisa Revisar!";
-            document.getElementById('feedbackText').innerText = `Você realizou ${registros.length} registros. Erros de dados detectados: ${errosCometidos}.`;
-            document.getElementById('modal').style.display = 'flex';
-        }
-    </script>
+function gerarPersonagem() {
+  const nome     = document.getElementById('p_nome').value.trim() || '???';
+  const tipo     = document.getElementById('p_tipo').value || '???';
+  const poder    = document.getElementById('p_poder').value.trim() || '???';
+  const fraqueza = document.getElementById('p_fraqueza').value.trim() || '???';
+  const fantasia = document.getElementById('p_fantasia').value.trim() || '???';
+  const nivel    = document.getElementById('p_nivel').value || '???';
+
+  const campos_p = [
+    ['⚡ Nome', nome], ['🎭 Tipo', tipo], ['💪 Superpoder', poder],
+    ['😰 Fraqueza', fraqueza], ['🦺 Fantasia', fantasia], ['🌟 Nível', nivel]
+  ];
+  let html = '';
+  campos_p.forEach(([l, v]) => {
+    html += `<div class="preview-campo">
+      <span class="preview-label" style="color:#6b21a8">${l}</span>
+      <span class="preview-valor">${v}</span>
+    </div>`;
+  });
+  document.getElementById('preview-personagem-conteudo').innerHTML = html;
+  document.getElementById('preview-personagem').classList.add('show');
+}
+
+const respondidas = {};
+function responder(btn, certa, questao) {
+  if (respondidas[questao]) return;
+  respondidas[questao] = true;
+  const fb = document.getElementById('fb-' + questao);
+  btn.classList.add(certa ? 'certa' : 'errada');
+  btn.textContent = (certa ? '✅ ' : '❌ ') + btn.textContent;
+  if (certa) {
+    fb.className = 'feedback-msg ok';
+    fb.textContent = '✅ Correto! Muito bem!';
+  } else {
+    fb.className = 'feedback-msg nao';
+    fb.textContent = '❌ Não é essa. Pense: o campo é o NOME que identifica a informação!';
+    // Destaca a certa
+    btn.parentElement.querySelectorAll('.reflexao-op').forEach(b => {
+      if (!b.classList.contains('errada')) b.classList.add('certa');
+    });
+  }
+}
+</script>
 </body>
-</html>
