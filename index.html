@@ -28,294 +28,152 @@
     background-image: radial-gradient(circle at 10% 20%, rgba(39,174,96,0.08) 0%, transparent 50%),
                       radial-gradient(circle at 90% 80%, rgba(30,107,60,0.08) 0%, transparent 50%);
   }
-
-  .topo {
-    text-align: center;
-    margin-bottom: 28px;
-  }
+  .topo { text-align: center; margin-bottom: 28px; }
   .badge {
-    display: inline-block;
-    background: var(--verde);
-    color: white;
-    font-family: 'Fredoka One', cursive;
-    font-size: 13px;
-    letter-spacing: 1px;
-    padding: 5px 18px;
-    border-radius: 20px;
-    margin-bottom: 10px;
+    display: inline-block; background: var(--verde); color: white;
+    font-family: 'Fredoka One', cursive; font-size: 13px; letter-spacing: 1px;
+    padding: 5px 18px; border-radius: 20px; margin-bottom: 10px;
   }
-  .topo h1 {
-    font-family: 'Fredoka One', cursive;
-    font-size: clamp(26px, 5vw, 40px);
-    color: var(--verde);
-    line-height: 1.1;
-  }
-  .topo p {
-    color: #555;
-    font-size: 15px;
-    margin-top: 6px;
-  }
-
+  .topo h1 { font-family: 'Fredoka One', cursive; font-size: clamp(26px,5vw,40px); color: var(--verde); line-height: 1.1; }
+  .topo p { color: #555; font-size: 15px; margin-top: 6px; }
   .card {
-    background: white;
-    border-radius: 20px;
-    padding: 24px;
-    margin-bottom: 22px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.07);
-    border-left: 6px solid var(--verde);
+    background: white; border-radius: 20px; padding: 24px; margin-bottom: 22px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.07); border-left: 6px solid var(--verde);
   }
-  .card h2 {
-    font-family: 'Fredoka One', cursive;
-    font-size: 20px;
-    color: var(--verde);
-    margin-bottom: 14px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
+  .card h2 { font-family: 'Fredoka One', cursive; font-size: 20px; color: var(--verde); margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
   .card p { font-size: 15px; color: #444; line-height: 1.7; margin-bottom: 10px; }
-
-  /* ── Ficha Interativa ── */
-  .ficha-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-  }
-  @media(max-width: 600px){ .ficha-container { grid-template-columns: 1fr; } }
-
+  .ficha-container { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media(max-width:600px){ .ficha-container { grid-template-columns: 1fr; } }
   .ficha-card {
     background: linear-gradient(135deg, #fff 0%, #f0faf4 100%);
-    border: 2px solid #c8e6c9;
-    border-radius: 16px;
-    padding: 20px;
-    position: relative;
+    border: 2px solid #c8e6c9; border-radius: 16px; padding: 20px; position: relative;
   }
   .ficha-card h3 {
-    font-family: 'Fredoka One', cursive;
-    color: var(--verde);
-    font-size: 16px;
-    margin-bottom: 14px;
-    text-align: center;
-    background: var(--verde);
-    color: white;
-    padding: 6px 12px;
-    border-radius: 10px;
+    font-family: 'Fredoka One', cursive; font-size: 16px; margin-bottom: 14px;
+    text-align: center; background: var(--verde); color: white; padding: 6px 12px; border-radius: 10px;
   }
-
-  .campo-row {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 10px;
-  }
-  .campo-nome {
-    font-weight: 700;
-    font-size: 13px;
-    color: var(--verde);
-    min-width: 90px;
-    white-space: nowrap;
-  }
+  .campo-row { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+  .campo-nome { font-weight: 700; font-size: 13px; color: var(--verde); min-width: 90px; white-space: nowrap; }
   .campo-input {
-    flex: 1;
-    border: 2px solid #c8e6c9;
-    border-radius: 10px;
-    padding: 6px 12px;
-    font-family: 'Nunito', sans-serif;
-    font-size: 14px;
-    color: var(--texto);
-    outline: none;
-    transition: border-color 0.2s, box-shadow 0.2s;
-    background: white;
+    flex: 1; border: 2px solid #c8e6c9; border-radius: 10px; padding: 6px 12px;
+    font-family: 'Nunito', sans-serif; font-size: 14px; color: var(--texto);
+    outline: none; transition: border-color 0.2s, box-shadow 0.2s; background: white;
   }
-  .campo-input:focus {
-    border-color: var(--verde-claro);
-    box-shadow: 0 0 0 3px rgba(39,174,96,0.15);
-  }
-
-  /* ── Personagem ── */
-  .personagem-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-  }
-  @media(max-width: 600px){ .personagem-grid { grid-template-columns: 1fr; } }
-
-  .campo-personagem {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-  }
-  .campo-personagem label {
-    font-size: 12px;
-    font-weight: 800;
-    color: var(--roxo);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-  }
+  .campo-input:focus { border-color: var(--verde-claro); box-shadow: 0 0 0 3px rgba(39,174,96,0.15); }
+  .personagem-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  @media(max-width:600px){ .personagem-grid { grid-template-columns: 1fr; } }
+  .campo-personagem { display: flex; flex-direction: column; gap: 4px; }
+  .campo-personagem label { font-size: 12px; font-weight: 800; color: var(--roxo); text-transform: uppercase; letter-spacing: 0.5px; }
   .campo-personagem input, .campo-personagem select {
-    border: 2px solid #d7b8f0;
-    border-radius: 10px;
-    padding: 7px 12px;
-    font-family: 'Nunito', sans-serif;
-    font-size: 14px;
-    outline: none;
-    transition: border-color 0.2s;
-    background: white;
+    border: 2px solid #d7b8f0; border-radius: 10px; padding: 7px 12px;
+    font-family: 'Nunito', sans-serif; font-size: 14px; outline: none;
+    transition: border-color 0.2s; background: white;
   }
-  .campo-personagem input:focus, .campo-personagem select:focus {
-    border-color: var(--roxo);
-    box-shadow: 0 0 0 3px rgba(142,68,173,0.12);
-  }
-
+  .campo-personagem input:focus, .campo-personagem select:focus { border-color: var(--roxo); box-shadow: 0 0 0 3px rgba(142,68,173,0.12); }
   .btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 11px 24px;
-    border-radius: 50px;
-    font-family: 'Fredoka One', cursive;
-    font-size: 16px;
-    cursor: pointer;
-    border: none;
-    transition: transform 0.15s, box-shadow 0.15s;
-    margin-top: 14px;
+    display: inline-flex; align-items: center; gap: 8px; padding: 11px 24px;
+    border-radius: 50px; font-family: 'Fredoka One', cursive; font-size: 16px;
+    cursor: pointer; border: none; transition: transform 0.15s, box-shadow 0.15s; margin-top: 14px;
   }
   .btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.15); }
   .btn:active { transform: translateY(0); }
   .btn-verde { background: var(--verde); color: white; }
   .btn-roxo  { background: var(--roxo);  color: white; }
-  .btn-laranja { background: var(--laranja); color: white; }
-
-  /* ── Preview Ficha ── */
+  .btn-azul  { background: var(--azul);  color: white; }
   .preview-box {
     background: linear-gradient(135deg, #fff9e6, #fff3cd);
-    border: 2px dashed var(--amarelo);
-    border-radius: 16px;
-    padding: 20px;
-    margin-top: 14px;
-    display: none;
+    border: 2px dashed var(--amarelo); border-radius: 16px;
+    padding: 20px; margin-top: 14px; display: none;
   }
   .preview-box.show { display: block; animation: popIn 0.4s ease; }
-  .preview-box h4 {
-    font-family: 'Fredoka One', cursive;
-    color: #b7791f;
-    margin-bottom: 12px;
-    font-size: 16px;
-  }
-  .preview-campo {
-    display: flex;
-    gap: 8px;
-    font-size: 14px;
-    margin-bottom: 6px;
-    align-items: flex-start;
-  }
+  .preview-box h4 { font-family: 'Fredoka One', cursive; color: #b7791f; margin-bottom: 12px; font-size: 16px; }
+  .preview-campo { display: flex; gap: 8px; font-size: 14px; margin-bottom: 6px; align-items: flex-start; }
   .preview-label { font-weight: 800; color: var(--verde); min-width: 110px; }
   .preview-valor { color: #333; }
-
-  /* ── Reflexão ── */
   .reflexao-box {
     background: linear-gradient(135deg, #e8f4fd, #dbeafe);
-    border-left: 5px solid var(--azul);
-    border-radius: 0 16px 16px 0;
-    padding: 18px 20px;
-    margin-top: 16px;
+    border-left: 5px solid var(--azul); border-radius: 0 16px 16px 0;
+    padding: 18px 20px; margin-top: 16px;
   }
   .reflexao-box p { color: #1e40af; font-size: 15px; font-weight: 700; margin-bottom: 10px; }
   .reflexao-opcoes { display: flex; flex-direction: column; gap: 8px; }
   .reflexao-op {
-    background: white;
-    border: 2px solid #93c5fd;
-    border-radius: 12px;
-    padding: 10px 16px;
-    cursor: pointer;
-    font-size: 14px;
-    color: #1e40af;
-    font-weight: 600;
-    transition: all 0.2s;
-    text-align: left;
+    background: white; border: 2px solid #93c5fd; border-radius: 12px;
+    padding: 10px 16px; cursor: pointer; font-size: 14px; color: #1e40af;
+    font-weight: 600; transition: all 0.2s; text-align: left;
   }
   .reflexao-op:hover { background: #dbeafe; border-color: var(--azul); }
   .reflexao-op.certa { background: #d1fae5; border-color: #10b981; color: #065f46; }
   .reflexao-op.errada { background: #fee2e2; border-color: #ef4444; color: #991b1b; }
-
+  .reflexao-op:disabled { cursor: not-allowed; opacity: 0.85; }
   .feedback-msg {
-    font-size: 14px;
-    font-weight: 700;
-    padding: 10px 16px;
-    border-radius: 12px;
-    margin-top: 10px;
-    display: none;
+    font-size: 14px; font-weight: 700; padding: 10px 16px;
+    border-radius: 12px; margin-top: 10px; display: none;
   }
-  .feedback-msg.ok { background: #d1fae5; color: #065f46; display: block; }
+  .feedback-msg.ok  { background: #d1fae5; color: #065f46; display: block; }
   .feedback-msg.nao { background: #fee2e2; color: #991b1b; display: block; }
-
-  /* ── Progresso ── */
-  .progresso-bar-wrap {
-    background: #e2e8f0;
-    border-radius: 10px;
-    height: 12px;
-    margin: 14px 0 4px;
-    overflow: hidden;
-  }
-  .progresso-bar {
-    background: linear-gradient(90deg, var(--verde-claro), var(--verde));
-    height: 100%;
-    width: 0%;
-    border-radius: 10px;
-    transition: width 0.5s ease;
-  }
+  .progresso-bar-wrap { background: #e2e8f0; border-radius: 10px; height: 12px; margin: 14px 0 4px; overflow: hidden; }
+  .progresso-bar { background: linear-gradient(90deg, var(--verde-claro), var(--verde)); height: 100%; width: 0%; border-radius: 10px; transition: width 0.5s ease; }
   .progresso-txt { font-size: 12px; color: #888; text-align: right; }
 
-  /* ── Animações ── */
+  /* ── PAINEL DE NOTA ── */
+  #painel-nota {
+    display: none;
+    background: white;
+    border-radius: 20px;
+    padding: 28px 24px;
+    margin-bottom: 22px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.10);
+    border-left: 6px solid #F4D03F;
+    text-align: center;
+    animation: popIn 0.5s ease;
+  }
+  #painel-nota h2 { font-family: 'Fredoka One', cursive; font-size: 22px; color: #b7791f; margin-bottom: 8px; }
+  .nota-numero {
+    font-family: 'Fredoka One', cursive;
+    font-size: 72px;
+    line-height: 1;
+    margin: 10px 0 4px;
+  }
+  .nota-detalhe { font-size: 14px; color: #666; margin-bottom: 18px; }
+  .nota-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin: 16px 0;
+    text-align: left;
+  }
+  @media(max-width:500px){ .nota-grid { grid-template-columns: 1fr; } }
+  .nota-item {
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 12px 14px;
+    font-size: 13px;
+  }
+  .nota-item .ni-label { color: #888; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .nota-item .ni-pts   { font-family: 'Fredoka One', cursive; font-size: 20px; }
+  .nota-item .ni-de    { font-size: 11px; color: #aaa; }
+  .barra-nota-wrap { background: #e2e8f0; border-radius: 10px; height: 18px; overflow: hidden; margin: 8px 0 4px; }
+  .barra-nota { height: 100%; border-radius: 10px; transition: width 1s ease; }
+  .nota-msg { font-family: 'Fredoka One', cursive; font-size: 18px; margin-top: 8px; }
+  .btn-refazer { background: #f0f4f8; color: #444; border: 2px solid #ddd; border-radius: 50px; font-family: 'Fredoka One', cursive; font-size: 15px; cursor: pointer; padding: 10px 22px; margin-top: 10px; transition: background 0.2s; }
+  .btn-refazer:hover { background: #e2e8f0; }
+  .btn-calcular { background: #F4D03F; color: #7d5a00; border: none; }
+  .btn-calcular:hover { background: #f0c030; }
+
   @keyframes popIn {
     from { opacity: 0; transform: scale(0.93) translateY(8px); }
     to   { opacity: 1; transform: scale(1) translateY(0); }
   }
   @keyframes shake {
     0%,100%{ transform: translateX(0); }
-    20%    { transform: translateX(-6px); }
-    40%    { transform: translateX(6px); }
-    60%    { transform: translateX(-4px); }
-    80%    { transform: translateX(4px); }
+    20%{ transform: translateX(-6px); }
+    40%{ transform: translateX(6px); }
+    60%{ transform: translateX(-4px); }
+    80%{ transform: translateX(4px); }
   }
   .shake { animation: shake 0.4s ease; }
-
-  .estrelas { font-size: 22px; cursor: pointer; user-select: none; }
-  .estrela { transition: transform 0.1s; display: inline-block; }
-  .estrela:hover { transform: scale(1.3); }
-
-  .tag-campo {
-    display: inline-block;
-    background: var(--verde-bg);
-    color: var(--verde);
-    font-size: 12px;
-    font-weight: 700;
-    padding: 3px 10px;
-    border-radius: 20px;
-    margin: 3px;
-    border: 1.5px solid #a7d7b4;
-  }
-
-  .secao-titulo {
-    font-family: 'Fredoka One', cursive;
-    font-size: 18px;
-    color: white;
-    background: var(--verde);
-    padding: 10px 18px;
-    border-radius: 12px;
-    margin-bottom: 14px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  footer {
-    text-align: center;
-    color: #aaa;
-    font-size: 12px;
-    margin-top: 30px;
-    padding-bottom: 10px;
-  }
+  footer { text-align: center; color: #aaa; font-size: 12px; margin-top: 30px; padding-bottom: 10px; }
 </style>
 </head>
 <body>
@@ -323,16 +181,16 @@
 <div class="topo">
   <div class="badge">EF04CO02 · SEMANA 1</div>
   <h1>📋 O que é um Registro?</h1>
+  <p>Complete as 3 partes para gerar sua nota final!</p>
 </div>
 
-<!-- ─────────────────── PARTE 1: Minha Ficha ─────────────────── -->
+<!-- ───────────── PARTE 1: Minha Ficha ───────────── -->
 <div class="card">
-  <h2>🧑 Parte 1 – Crie sua Ficha de Registro</h2>
-  <p>Um <strong>registro</strong> guarda informações sobre algo ou alguém. Cada informação vai em um <strong>campo com nome</strong>. Preencha seus campos abaixo!</p>
+  <h2>🧑 Parte 1 – Crie sua Ficha de Registro <span style="font-size:13px;color:#888;font-family:Nunito,sans-serif;font-weight:700;">(3,0 pts)</span></h2>
+  <p>Um <strong>registro</strong> guarda informações sobre algo ou alguém. Preencha seus campos abaixo!</p>
 
   <div class="ficha-container">
-    <!-- Ficha Pessoal -->
-    <div class="ficha-card">
+    <div class="ficha-card" id="ficha-card">
       <h3>👤 Minha Ficha Pessoal</h3>
       <div class="campo-row"><span class="campo-nome">Nome</span><input class="campo-input" id="f_nome" placeholder="Seu nome completo" oninput="atualizarProgresso()"></div>
       <div class="campo-row"><span class="campo-nome">Apelido</span><input class="campo-input" id="f_apelido" placeholder="Como te chamam?" oninput="atualizarProgresso()"></div>
@@ -341,110 +199,80 @@
       <div class="campo-row"><span class="campo-nome">Comida fav.</span><input class="campo-input" id="f_comida" placeholder="Ex: pizza" oninput="atualizarProgresso()"></div>
       <div class="campo-row"><span class="campo-nome">Hobby</span><input class="campo-input" id="f_hobby" placeholder="Ex: jogar bola" oninput="atualizarProgresso()"></div>
       <div class="campo-row"><span class="campo-nome">Animal fav.</span><input class="campo-input" id="f_animal" placeholder="Ex: cachorro" oninput="atualizarProgresso()"></div>
-
-      <div class="progresso-bar-wrap">
-        <div class="progresso-bar" id="progresso"></div>
-      </div>
+      <div class="progresso-bar-wrap"><div class="progresso-bar" id="progresso"></div></div>
       <div class="progresso-txt" id="progresso-txt">0 de 7 campos preenchidos</div>
-
       <button class="btn btn-verde" onclick="gerarFicha()">👁️ Ver minha ficha!</button>
     </div>
-
-    <!-- Preview -->
-    <div style="display:flex; flex-direction:column; justify-content:center;">
+    <div style="display:flex;flex-direction:column;justify-content:center;">
       <div class="preview-box" id="preview">
         <h4>📄 Sua Ficha de Registro</h4>
         <div id="preview-conteudo"></div>
-        <div style="margin-top:14px; font-size:12px; color:#888;">
-          Cada linha é um <strong>campo</strong> com nome e valor. É isso que chamamos de <strong>registro</strong>!
-        </div>
+        <div style="margin-top:14px;font-size:12px;color:#888;">Cada linha é um <strong>campo</strong> com nome e valor. É isso que chamamos de <strong>registro</strong>!</div>
       </div>
-      <div id="msg-vazia" style="text-align:center; color:#aaa; font-size:14px; padding:30px;">
-        <div style="font-size:50px; margin-bottom:10px;">👆</div>
+      <div id="msg-vazia" style="text-align:center;color:#aaa;font-size:14px;padding:30px;">
+        <div style="font-size:50px;margin-bottom:10px;">👆</div>
         Preencha os campos ao lado<br>e clique em "Ver minha ficha"!
       </div>
     </div>
   </div>
 </div>
 
-<!-- ─────────────────── PARTE 2: Personagem ─────────────────── -->
-<div class="card" style="border-left-color: var(--roxo);">
-  <h2>🦸 Parte 2 – Ficha do Seu Personagem Inventado</h2>
-  <p>Agora crie um <strong>super-herói ou personagem imaginário</strong> seu! Preencha os campos e veja o registro aparecer.</p>
-
+<!-- ───────────── PARTE 2: Personagem ───────────── -->
+<div class="card" style="border-left-color:var(--roxo);">
+  <h2>🦸 Parte 2 – Ficha do Seu Personagem <span style="font-size:13px;color:#888;font-family:Nunito,sans-serif;font-weight:700;">(3,0 pts)</span></h2>
+  <p>Crie um <strong>super-herói ou personagem imaginário</strong>! Preencha os campos e veja o registro aparecer.</p>
   <div class="personagem-grid">
-    <div class="campo-personagem">
-      <label>⚡ Nome do Personagem</label>
-      <input id="p_nome" placeholder="Ex: Mega Trovão">
-    </div>
+    <div class="campo-personagem"><label>⚡ Nome do Personagem</label><input id="p_nome" placeholder="Ex: Mega Trovão"></div>
     <div class="campo-personagem">
       <label>🎭 Tipo</label>
       <select id="p_tipo">
         <option value="">Escolha...</option>
-        <option>Herói</option>
-        <option>Vilão</option>
-        <option>Sidekick</option>
-        <option>Mago</option>
-        <option>Robô</option>
-        <option>Animal especial</option>
+        <option>Herói</option><option>Vilão</option><option>Sidekick</option>
+        <option>Mago</option><option>Robô</option><option>Animal especial</option>
       </select>
     </div>
-    <div class="campo-personagem">
-      <label>💪 Superpoder</label>
-      <input id="p_poder" placeholder="Ex: controla o raio">
-    </div>
-    <div class="campo-personagem">
-      <label>😰 Fraqueza</label>
-      <input id="p_fraqueza" placeholder="Ex: tem medo de água">
-    </div>
-    <div class="campo-personagem">
-      <label>🦺 Cor da Fantasia</label>
-      <input id="p_fantasia" placeholder="Ex: dourado e azul">
-    </div>
+    <div class="campo-personagem"><label>💪 Superpoder</label><input id="p_poder" placeholder="Ex: controla o raio"></div>
+    <div class="campo-personagem"><label>😰 Fraqueza</label><input id="p_fraqueza" placeholder="Ex: tem medo de água"></div>
+    <div class="campo-personagem"><label>🦺 Cor da Fantasia</label><input id="p_fantasia" placeholder="Ex: dourado e azul"></div>
     <div class="campo-personagem">
       <label>🌟 Nível de Poder</label>
       <select id="p_nivel">
         <option value="">Escolha...</option>
-        <option>⭐ Iniciante</option>
-        <option>⭐⭐ Médio</option>
-        <option>⭐⭐⭐ Poderoso</option>
-        <option>⭐⭐⭐⭐ Épico</option>
-        <option>⭐⭐⭐⭐⭐ Lendário</option>
+        <option>⭐ Iniciante</option><option>⭐⭐ Médio</option><option>⭐⭐⭐ Poderoso</option>
+        <option>⭐⭐⭐⭐ Épico</option><option>⭐⭐⭐⭐⭐ Lendário</option>
       </select>
     </div>
   </div>
-
   <button class="btn btn-roxo" onclick="gerarPersonagem()">🦸 Gerar Ficha do Personagem!</button>
-
-  <div class="preview-box" id="preview-personagem" style="background: linear-gradient(135deg,#f5e6ff,#ede0ff); border-color: #c084fc;">
+  <div class="preview-box" id="preview-personagem" style="background:linear-gradient(135deg,#f5e6ff,#ede0ff);border-color:#c084fc;">
     <h4 style="color:#6b21a8;">🦸 Ficha do Personagem</h4>
     <div id="preview-personagem-conteudo"></div>
   </div>
 </div>
 
-<!-- ─────────────────── PARTE 3: Reflexão ─────────────────── -->
-<div class="card" style="border-left-color: var(--azul);">
-  <h2>🤔 Parte 3 – Hora de Pensar!</h2>
-  <p>Responda as questões abaixo para fixar o que aprendemos.</p>
+<!-- ───────────── PARTE 3: Reflexão ───────────── -->
+<div class="card" style="border-left-color:var(--azul);">
+  <h2>🤔 Parte 3 – Hora de Pensar! <span style="font-size:13px;color:#888;font-family:Nunito,sans-serif;font-weight:700;">(4,0 pts)</span></h2>
+  <p>Responda as questões abaixo. Cada questão vale <strong>1,33 ponto</strong>.</p>
 
   <!-- Q1 -->
   <div class="reflexao-box" style="margin-bottom:16px;">
     <p>🟦 Questão 1: O que é um <strong>campo</strong> em um registro?</p>
-    <div class="reflexao-opcoes">
-      <button class="reflexao-op" onclick="responder(this, false, 'q1')">A) É o valor guardado, como "João".</button>
-      <button class="reflexao-op" onclick="responder(this, true, 'q1')">B) É o nome que identifica uma informação, como "Nome" ou "Idade".</button>
-      <button class="reflexao-op" onclick="responder(this, false, 'q1')">C) É o número da linha na tabela.</button>
+    <div class="reflexao-opcoes" id="ops-q1">
+      <button class="reflexao-op" onclick="responder(this,false,'q1')">A) É o valor guardado, como "João".</button>
+      <button class="reflexao-op" onclick="responder(this,true,'q1')">B) É o nome que identifica uma informação, como "Nome" ou "Idade".</button>
+      <button class="reflexao-op" onclick="responder(this,false,'q1')">C) É o número da linha na tabela.</button>
     </div>
     <div class="feedback-msg" id="fb-q1"></div>
   </div>
 
   <!-- Q2 -->
   <div class="reflexao-box" style="margin-bottom:16px;">
-    <p>🟦 Questão 2: Por que chamamos esse tipo de organização de <strong>"registro nomeado"</strong>?</p>
-    <div class="reflexao-opcoes">
-      <button class="reflexao-op" onclick="responder(this, false, 'q2')">A) Porque cada dado tem um número de posição.</button>
-      <button class="reflexao-op" onclick="responder(this, false, 'q2')">B) Porque o arquivo precisa ter um nome no computador.</button>
-      <button class="reflexao-op" onclick="responder(this, true, 'q2')">C) Porque cada campo tem um <em>nome</em> que identifica o que guarda.</button>
+    <p>🟦 Questão 2: Por que chamamos de <strong>"registro nomeado"</strong>?</p>
+    <div class="reflexao-opcoes" id="ops-q2">
+      <button class="reflexao-op" onclick="responder(this,false,'q2')">A) Porque cada dado tem um número de posição.</button>
+      <button class="reflexao-op" onclick="responder(this,false,'q2')">B) Porque o arquivo precisa ter um nome no computador.</button>
+      <button class="reflexao-op" onclick="responder(this,true,'q2')">C) Porque cada campo tem um nome que identifica o que guarda.</button>
     </div>
     <div class="feedback-msg" id="fb-q2"></div>
   </div>
@@ -452,92 +280,250 @@
   <!-- Q3 -->
   <div class="reflexao-box">
     <p>🟦 Questão 3: Se o campo "Nome" fosse só a <strong>posição 1</strong> (sem nome), o que aconteceria?</p>
-    <div class="reflexao-opcoes">
-      <button class="reflexao-op" onclick="responder(this, false, 'q3')">A) Ficaria mais fácil porque números são simples.</button>
-      <button class="reflexao-op" onclick="responder(this, true, 'q3')">B) Ficaria mais difícil — precisaríamos lembrar o que cada posição significa.</button>
-      <button class="reflexao-op" onclick="responder(this, false, 'q3')">C) Não faria diferença nenhuma.</button>
+    <div class="reflexao-opcoes" id="ops-q3">
+      <button class="reflexao-op" onclick="responder(this,false,'q3')">A) Ficaria mais fácil porque números são simples.</button>
+      <button class="reflexao-op" onclick="responder(this,true,'q3')">B) Ficaria mais difícil — precisaríamos lembrar o que cada posição significa.</button>
+      <button class="reflexao-op" onclick="responder(this,false,'q3')">C) Não faria diferença nenhuma.</button>
     </div>
     <div class="feedback-msg" id="fb-q3"></div>
   </div>
 </div>
 
+<!-- ───────────── BOTÃO CALCULAR ───────────── -->
+<div style="text-align:center; margin-bottom:22px;">
+  <button class="btn btn-calcular" onclick="calcularNota()" id="btn-calcular">
+    🎯 Calcular minha nota!
+  </button>
+</div>
+
+<!-- ───────────── PAINEL DE NOTA ───────────── -->
+<div id="painel-nota">
+  <h2>📊 Resultado Final</h2>
+  <div class="nota-numero" id="nota-numero">—</div>
+  <div class="nota-detalhe" id="nota-detalhe">de 10,0 pontos</div>
+  <div class="barra-nota-wrap"><div class="barra-nota" id="barra-nota" style="width:0%"></div></div>
+  <div class="nota-msg" id="nota-msg"></div>
+
+  <div class="nota-grid">
+    <div class="nota-item">
+      <div class="ni-label">Parte 1 – Ficha</div>
+      <div class="ni-pts" id="np1">—</div>
+      <div class="ni-de">de 3,0 pts</div>
+      <div style="font-size:12px;color:#555;margin-top:4px;" id="nd1"></div>
+    </div>
+    <div class="nota-item">
+      <div class="ni-label">Parte 2 – Personagem</div>
+      <div class="ni-pts" id="np2">—</div>
+      <div class="ni-de">de 3,0 pts</div>
+      <div style="font-size:12px;color:#555;margin-top:4px;" id="nd2"></div>
+    </div>
+    <div class="nota-item">
+      <div class="ni-label">Parte 3 – Questões</div>
+      <div class="ni-pts" id="np3">—</div>
+      <div class="ni-de">de 4,0 pts</div>
+      <div style="font-size:12px;color:#555;margin-top:4px;" id="nd3"></div>
+    </div>
+  </div>
+
+  <button class="btn-refazer" onclick="refazer()">🔄 Refazer atividade</button>
+</div>
+
 <footer>Material Pedagógico - Profª Adriana Bett Terebinto © 2026</footer>
 
 <script>
-const campos = ['f_nome','f_apelido','f_idade','f_cor','f_comida','f_hobby','f_animal'];
-const labels = ['Nome','Apelido','Idade','Cor favorita','Comida favorita','Hobby','Animal favorito'];
-const emojis = ['👤','🏷️','🎂','🎨','🍕','⚽','🐾'];
+// ── Estado global ──────────────────────────────────────────────
+const campos   = ['f_nome','f_apelido','f_idade','f_cor','f_comida','f_hobby','f_animal'];
+const labels   = ['Nome','Apelido','Idade','Cor favorita','Comida favorita','Hobby','Animal favorito'];
+const emojis   = ['👤','🏷️','🎂','🎨','🍕','⚽','🐾'];
+const respondidas = {};
+let   fichaGerada = false;
+let   personagemGerado = false;
 
+// ── Progresso da ficha ─────────────────────────────────────────
 function atualizarProgresso() {
   const preenchidos = campos.filter(id => document.getElementById(id).value.trim() !== '').length;
   const pct = (preenchidos / campos.length) * 100;
   document.getElementById('progresso').style.width = pct + '%';
-  document.getElementById('progresso-txt').textContent = `${preenchidos} de ${campos.length} campos preenchidos`;
+  document.getElementById('progresso-txt').textContent = preenchidos + ' de ' + campos.length + ' campos preenchidos';
 }
 
+// ── Gerar ficha pessoal ────────────────────────────────────────
 function gerarFicha() {
   const valores = campos.map(id => document.getElementById(id).value.trim());
   const preenchidos = valores.filter(v => v !== '').length;
   if (preenchidos < 3) {
-    document.querySelector('.ficha-card').classList.add('shake');
-    setTimeout(() => document.querySelector('.ficha-card').classList.remove('shake'), 400);
+    document.getElementById('ficha-card').classList.add('shake');
+    setTimeout(() => document.getElementById('ficha-card').classList.remove('shake'), 400);
     alert('Preencha pelo menos 3 campos primeiro! 😊');
     return;
   }
   let html = '';
   campos.forEach((id, i) => {
     const val = valores[i] || '—';
-    html += `<div class="preview-campo">
-      <span class="preview-label">${emojis[i]} ${labels[i]}</span>
-      <span class="preview-valor">${val}</span>
-    </div>`;
+    html += '<div class="preview-campo"><span class="preview-label">' + emojis[i] + ' ' + labels[i] + '</span><span class="preview-valor">' + val + '</span></div>';
   });
   document.getElementById('preview-conteudo').innerHTML = html;
   document.getElementById('preview').classList.add('show');
   document.getElementById('msg-vazia').style.display = 'none';
+  fichaGerada = true;
 }
 
+// ── Gerar ficha do personagem ──────────────────────────────────
 function gerarPersonagem() {
-  const nome     = document.getElementById('p_nome').value.trim() || '???';
-  const tipo     = document.getElementById('p_tipo').value || '???';
-  const poder    = document.getElementById('p_poder').value.trim() || '???';
-  const fraqueza = document.getElementById('p_fraqueza').value.trim() || '???';
-  const fantasia = document.getElementById('p_fantasia').value.trim() || '???';
-  const nivel    = document.getElementById('p_nivel').value || '???';
-
+  const nome     = document.getElementById('p_nome').value.trim()    || '';
+  const tipo     = document.getElementById('p_tipo').value           || '';
+  const poder    = document.getElementById('p_poder').value.trim()   || '';
+  const fraqueza = document.getElementById('p_fraqueza').value.trim()|| '';
+  const fantasia = document.getElementById('p_fantasia').value.trim()|| '';
+  const nivel    = document.getElementById('p_nivel').value          || '';
+  const vals = [nome,tipo,poder,fraqueza,fantasia,nivel];
+  const preenchidos = vals.filter(v => v !== '').length;
+  if (preenchidos < 3) {
+    alert('Preencha pelo menos 3 campos do personagem! 🦸');
+    return;
+  }
   const campos_p = [
-    ['⚡ Nome', nome], ['🎭 Tipo', tipo], ['💪 Superpoder', poder],
-    ['😰 Fraqueza', fraqueza], ['🦺 Fantasia', fantasia], ['🌟 Nível', nivel]
+    ['⚡ Nome', nome||'???'], ['🎭 Tipo', tipo||'???'], ['💪 Superpoder', poder||'???'],
+    ['😰 Fraqueza', fraqueza||'???'], ['🦺 Fantasia', fantasia||'???'], ['🌟 Nível', nivel||'???']
   ];
   let html = '';
-  campos_p.forEach(([l, v]) => {
-    html += `<div class="preview-campo">
-      <span class="preview-label" style="color:#6b21a8">${l}</span>
-      <span class="preview-valor">${v}</span>
-    </div>`;
+  campos_p.forEach(([l,v]) => {
+    html += '<div class="preview-campo"><span class="preview-label" style="color:#6b21a8">' + l + '</span><span class="preview-valor">' + v + '</span></div>';
   });
   document.getElementById('preview-personagem-conteudo').innerHTML = html;
   document.getElementById('preview-personagem').classList.add('show');
+  personagemGerado = true;
 }
 
-const respondidas = {};
+// ── Responder questões ─────────────────────────────────────────
 function responder(btn, certa, questao) {
   if (respondidas[questao]) return;
-  respondidas[questao] = true;
+  respondidas[questao] = certa ? 'certa' : 'errada';
   const fb = document.getElementById('fb-' + questao);
+  // desabilitar todos os botões da questão
+  document.querySelectorAll('#ops-' + questao + ' .reflexao-op').forEach(b => b.disabled = true);
   btn.classList.add(certa ? 'certa' : 'errada');
-  btn.textContent = (certa ? '✅ ' : '❌ ') + btn.textContent;
   if (certa) {
     fb.className = 'feedback-msg ok';
     fb.textContent = '✅ Correto! Muito bem!';
   } else {
     fb.className = 'feedback-msg nao';
-    fb.textContent = '❌ Não é essa. Pense: o campo é o NOME que identifica a informação!';
-    // Destaca a certa
-    btn.parentElement.querySelectorAll('.reflexao-op').forEach(b => {
+    fb.textContent = '❌ Não é essa. O campo é o NOME que identifica a informação!';
+    document.querySelectorAll('#ops-' + questao + ' .reflexao-op').forEach(b => {
       if (!b.classList.contains('errada')) b.classList.add('certa');
     });
   }
 }
+
+// ── Calcular nota ──────────────────────────────────────────────
+function calcularNota() {
+
+  // — Parte 1: ficha pessoal (3,0 pts) —
+  const camposPreenchidos = campos.filter(id => document.getElementById(id).value.trim() !== '').length;
+  // precisa ter gerado E ter ao menos 3 campos
+  let p1 = 0, desc1 = '';
+  if (!fichaGerada || camposPreenchidos < 3) {
+    p1 = 0; desc1 = 'Ficha não gerada';
+  } else if (camposPreenchidos === 7) {
+    p1 = 3.0; desc1 = '7/7 campos ✅';
+  } else if (camposPreenchidos >= 5) {
+    p1 = 2.0; desc1 = camposPreenchidos + '/7 campos';
+  } else {
+    p1 = 1.0; desc1 = camposPreenchidos + '/7 campos';
+  }
+
+  // — Parte 2: personagem (3,0 pts) —
+  const pVals = ['p_nome','p_tipo','p_poder','p_fraqueza','p_fantasia','p_nivel'];
+  const pPreench = pVals.filter(id => document.getElementById(id).value.trim() !== '' && document.getElementById(id).value !== '').length;
+  let p2 = 0, desc2 = '';
+  if (!personagemGerado || pPreench < 3) {
+    p2 = 0; desc2 = 'Ficha não gerada';
+  } else if (pPreench === 6) {
+    p2 = 3.0; desc2 = '6/6 campos ✅';
+  } else if (pPreench >= 4) {
+    p2 = 2.0; desc2 = pPreench + '/6 campos';
+  } else {
+    p2 = 1.0; desc2 = pPreench + '/6 campos';
+  }
+
+  // — Parte 3: questões (4,0 pts) —
+  // cada questão certa = 4/3 ≈ 1.333
+  const certas = ['q1','q2','q3'].filter(q => respondidas[q] === 'certa').length;
+  const p3 = parseFloat((certas * (4/3)).toFixed(2));
+  const desc3 = certas + '/3 corretas';
+
+  const total = parseFloat((p1 + p2 + p3).toFixed(1));
+
+  // cor e mensagem
+  let cor, msg;
+  if (total >= 9) {
+    cor = '#27AE60'; msg = '🏆 Excelente! Você dominou o conteúdo!';
+  } else if (total >= 7) {
+    cor = '#2980B9'; msg = '👏 Muito bom! Continue assim!';
+  } else if (total >= 5) {
+    cor = '#E67E22'; msg = '📚 Bom esforço! Revise o que errou.';
+  } else {
+    cor = '#E74C3C'; msg = '💪 Não desanime! Tente novamente.';
+  }
+
+  // exibir painel
+  document.getElementById('nota-numero').textContent = total.toFixed(1).replace('.',',');
+  document.getElementById('nota-numero').style.color = cor;
+  document.getElementById('nota-detalhe').textContent = 'de 10,0 pontos';
+  document.getElementById('barra-nota').style.width = (total * 10) + '%';
+  document.getElementById('barra-nota').style.background = cor;
+  document.getElementById('nota-msg').textContent = msg;
+  document.getElementById('nota-msg').style.color = cor;
+
+  document.getElementById('np1').textContent = p1.toFixed(1).replace('.',',');
+  document.getElementById('nd1').textContent = desc1;
+  document.getElementById('np1').style.color = p1 > 0 ? '#27AE60' : '#E74C3C';
+
+  document.getElementById('np2').textContent = p2.toFixed(1).replace('.',',');
+  document.getElementById('nd2').textContent = desc2;
+  document.getElementById('np2').style.color = p2 > 0 ? '#27AE60' : '#E74C3C';
+
+  document.getElementById('np3').textContent = p3.toFixed(1).replace('.',',');
+  document.getElementById('nd3').textContent = desc3;
+  document.getElementById('np3').style.color = certas > 0 ? '#27AE60' : '#E74C3C';
+
+  const painel = document.getElementById('painel-nota');
+  painel.style.display = 'block';
+  painel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// ── Refazer ────────────────────────────────────────────────────
+function refazer() {
+  // limpar campos ficha
+  campos.forEach(id => document.getElementById(id).value = '');
+  atualizarProgresso();
+  fichaGerada = false;
+  document.getElementById('preview').classList.remove('show');
+  document.getElementById('msg-vazia').style.display = '';
+
+  // limpar personagem
+  ['p_nome','p_poder','p_fraqueza','p_fantasia'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('p_tipo').value = '';
+  document.getElementById('p_nivel').value = '';
+  personagemGerado = false;
+  document.getElementById('preview-personagem').classList.remove('show');
+
+  // limpar questões
+  ['q1','q2','q3'].forEach(q => {
+    delete respondidas[q];
+    document.querySelectorAll('#ops-' + q + ' .reflexao-op').forEach(b => {
+      b.classList.remove('certa','errada');
+      b.disabled = false;
+    });
+    const fb = document.getElementById('fb-' + q);
+    fb.className = 'feedback-msg';
+    fb.textContent = '';
+  });
+
+  // esconder painel
+  document.getElementById('painel-nota').style.display = 'none';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
 </script>
 </body>
+</html>
